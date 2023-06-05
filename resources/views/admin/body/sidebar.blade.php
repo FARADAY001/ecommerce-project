@@ -1,3 +1,9 @@
+@php
+   $prefix = Request::route()->getPrefix();
+   $route = Route::current()->getName(); 
+@endphp
+
+
 <aside class="main-sidebar">
     <!-- sidebar-->
     <section class="sidebar">	
@@ -17,38 +23,38 @@
       <!-- sidebar menu-->
       <ul class="sidebar-menu" data-widget="tree">  
 		  
-		<li>
-          <a href="index.html">
+
+		<li class="{{ ($route == 'dashboard')? 'active': ''}}">
+          <a href="{{ url('admin/dashboard')}}">
             <i data-feather="pie-chart"></i>
 			<span>Dashboard</span>
           </a>
       </li>  
 		
-        <li class="treeview">
+        <li class="treeview {{ ($prefix == '/brand')?'active':'' }}">
           <a href="#">
             <i data-feather="message-circle"></i>
-            <span>Application</span>
+            <span>Marques</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="chat.html"><i class="ti-more"></i>Chat</a></li>
-            <li><a href="calendar.html"><i class="ti-more"></i>Calendar</a></li>
+            <li class="{{ ($prefix == 'all.brand')?'active':'' }}"><a href="{{ route('all.brand')}}"><i class="ti-more"></i>Toutes les marques</a></li>
           </ul>
         </li> 
 		  
-        <li class="treeview">
+        <li class="treeview {{ ($prefix == '/category')?'active':'' }}">
           <a href="#">
-            <i data-feather="mail"></i> <span>Mailbox</span>
+            <i data-feather="mail"></i> <span>Catégories</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="mailbox_inbox.html"><i class="ti-more"></i>Inbox</a></li>
-            <li><a href="mailbox_compose.html"><i class="ti-more"></i>Compose</a></li>
-            <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
+            <li class="{{ ($route == 'all.category')? 'active':'' }}"><a href="{{ route('all.category') }}"><i class="ti-more"></i>Toutes les categories</a></li>
+            <li class="{{ ($route == 'all.subcategory')? 'active':'' }}"><a href="{{ route('all.subcategory') }}"><i class="ti-more"></i>Tous Sous-catégorie</a></li>
+            <li class="{{ ($route == 'all.subsubcategory')? 'active':'' }}"><a href="{{ route('all.subsubcategory') }}"><i class="ti-more"></i>Sous->Sous-catégorie</a></li>
           </ul>
         </li>
 		
